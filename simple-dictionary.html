@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dictionary</title>
+
+</head>
+<body>
+<input type="text" id="input">
+<input type="button" value="Tìm kiếm" onclick="lookUp()">
+<input type="button" value="Show từ điển" onclick="showDictionary()">
+<hr>
+<p id="display"></p>
+
+<script>
+    // entry = {eng:"",vi:""};
+    let dictionary = [];
+    initDictionary()
+    function lookUp(){
+        let key = document.getElementById('input').value.toLowerCase();
+        let isFound = false;
+        let entry;
+        for (let i = 0; i< dictionary.length; i++){
+            entry = dictionary[i];
+            if (entry.eng === key){
+                isFound = true;
+                break;
+            }
+        }
+        let html;
+        if (isFound) {
+            html = 'English: '+ entry.eng + '<br>' + 'Vietnamese: ' + entry.vi;
+        } else {
+            html = 'Không tìm thấy trong từ điển!';
+        }
+        document.getElementById('display').innerHTML = html;
+    }
+
+    function showDictionary(){
+        let html = '<strong># &nbsp&nbsp | ' +
+            '&nbsp&nbsp English &nbsp&nbsp | ' +
+            '&nbsp&nbsp Vietnammese </strong><br>';
+
+        for (let i=0; i<dictionary.length; i++){
+            let entry = dictionary[i];
+            let english = entry.eng;
+            let vietnamese = entry.vi;
+            html += (i+1)+' &nbsp&nbsp | ' +
+                '&nbsp&nbsp' + english + '&nbsp&nbsp | ' +
+                '&nbsp&nbsp' + vietnamese+'<br>';
+
+        }
+        document.getElementById('display').innerHTML = html;
+    }
+
+    function initDictionary() {
+        dictionary.push({eng: "hello", vi: "xin chào"});
+        dictionary.push({eng: "bye", vi: "tạm biệt"});
+        dictionary.push({eng: "computer", vi: "máy tính"});
+        dictionary.push({eng: "bottle", vi: "bình"});
+        dictionary.push({eng: "water", vi: "nước"});
+        dictionary.push({eng: "mouse", vi: "con chuột"});
+        dictionary.push({eng: "face mask", vi: "khẩu trang"});
+        dictionary.push({eng: "face", vi: "mặt"});
+        dictionary.push({eng: "mask", vi: "mặt nạ"});
+        dictionary.push({eng: "game", vi: "trò chơi"});
+        dictionary.push({eng: "headphone", vi: "tai nghe"});
+        dictionary.push({eng: "smile", vi: "cười"});
+        dictionary.push({eng: "cry", vi: "khóc"});
+        dictionary.push({eng: "be", vi: "là"});
+        dictionary.push({eng: "have", vi: "có"});
+        dictionary.push({eng: "for", vi: "cho"});
+        dictionary.push({eng: "do", vi: "làm"});
+        dictionary.push({eng: "work", vi: "làm việc"});
+        dictionary.push({eng: "time", vi: "thời gian"});
+        dictionary.push({eng: "number", vi: "số"});
+        dictionary.push({eng: "programing", vi: "lập trình"});
+        dictionary.push({eng: "program", vi: "chương trình"});
+        dictionary.push({eng: "life", vi: "cuộc sống"});
+        dictionary.push({eng: "learn", vi: "học"});
+        dictionary.push({eng: "study", vi: "nghiên cứu"});
+        dictionary.push({eng: "boy", vi: "con trai"});
+        dictionary.push({eng: "girl", vi: "con gái"});
+        dictionary.push({eng: "happy", vi: "vui vẻ"});
+        dictionary.push({eng: "sad", vi: "buồn"});
+        dictionary.push({eng: "angry", vi: "tức giận"});
+
+        // sắp xếp lại từ điển theo bảng chữ cái
+        dictionary.sort(function(entry1, entry2) {return entry1.eng.localeCompare(entry2.eng);});
+    }
+</script>
+</body>
+</html>
